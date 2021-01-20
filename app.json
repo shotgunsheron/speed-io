@@ -1,0 +1,10 @@
+{
+  "name": "farm-io",
+  "description": "A simple multiplayer farming game where you can farm food, hunt players and steal their food, and pvp!",
+  "scripts": {
+    "build": "gulp build",
+    "start": "gulp run",
+    "watch": "gulp watch",
+    "test": "gulp test"
+  }
+}
