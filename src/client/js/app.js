@@ -109,7 +109,7 @@ var foodConfig = {
 };
 
 var playerConfig = {
-    border: 20*Math.random(),
+    border: 18,
     textColor: '#000000',
     borderColor: '#000000',
     textBorder: '#FFFFFF',
@@ -446,7 +446,7 @@ function drawPlayers(order) {
 
         var fontSize = Math.max(cellCurrent.radius / 3, 12);
         graph.lineWidth = cellCurrent.speed;
-        graph.globalAlpha = 0.4;
+        graph.globalAlpha = 0.3;
         graph.fillStyle = cellCurrent.mass;
         //graph.fillStyle = "rgba(255, 255, 255, 0.5)";
         graph.strokeStyle = playerConfig.textBorder;
