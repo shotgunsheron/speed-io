@@ -114,7 +114,8 @@ var playerConfig = {
     borderColor: '#000000',
     textBorder: '#FFFFFF',
     textBorderSize: 3,
-    defaultSize: 30
+    defaultSize: 30,
+    
 };
 
 var player = {
@@ -279,6 +280,9 @@ function setupSocket(socket) {
             player.cells = playerData.cells;
             player.xoffset = isNaN(xoffset) ? 0 : xoffset;
             player.yoffset = isNaN(yoffset) ? 0 : yoffset;
+            player.auraColor = playerData.hue;
+            player.aura = playerData.mass;
+
         }
         users = userData;
         foods = foodsList;
@@ -417,6 +421,7 @@ function drawPlayers(order) {
         for (i = 0; i < points; ++i) {
             if (i === 0) {
                 graph.beginPath();
+                
                 graph.moveTo(xstore[i], ystore[i]);
             } else if (i > 0 && i < points - 1) {
                 graph.lineTo(xstore[i], ystore[i]);
@@ -429,6 +434,9 @@ function drawPlayers(order) {
         graph.lineJoin = 'round';
         graph.lineCap = 'round';
         graph.fill();
+        
+      
+
         graph.stroke();
         var nameCell = "";
         if(typeof(userCurrent.id) == "undefined")
@@ -437,12 +445,15 @@ function drawPlayers(order) {
             nameCell = userCurrent.name;
 
         var fontSize = Math.max(cellCurrent.radius / 3, 12);
-        graph.lineWidth = playerConfig.textBorderSize;
-        graph.fillStyle = playerConfig.textColor;
+        graph.lineWidth = cellCurrent.speed;
+        graph.globalAlpha = 0.4;
+        graph.fillStyle = cellCurrent.mass;
+        //graph.fillStyle = "rgba(255, 255, 255, 0.5)";
         graph.strokeStyle = playerConfig.textBorder;
-        graph.miterLimit = 1;
+        graph.miterLimit = 3;
         graph.lineJoin = 'round';
         graph.textAlign = 'center';
+
         graph.textBaseline = 'middle';
         graph.font = 'bold ' + fontSize + 'px sans-serif';
 
@@ -454,7 +465,7 @@ function drawPlayers(order) {
             graph.fillText(nameCell, circle.x, circle.y);
             graph.font = 'bold ' + Math.max(fontSize / 3 * 2, 10) + 'px sans-serif';
             if(nameCell.length === 0) fontSize = 0;
-            graph.strokeText(Math.round(cellCurrent.mass), circle.x, circle.y+fontSize);
+            graph.strokeText(Math.round(cellCurrent.mass), circle.x, circle.y+fontSize);                              
             graph.fillText(Math.round(cellCurrent.mass), circle.x, circle.y+fontSize);
         }
     }

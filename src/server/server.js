@@ -604,7 +604,7 @@ function tickPlayer(currentPlayer) {
         masaGanada += (foodEaten.length * c.foodMass);
         currentCell.mass += masaGanada;
         currentPlayer.massTotal += masaGanada;
-        currentCell.speed = currentCell.mass/5;
+        currentCell.speed = currentCell.mass/30;
         playerCircle.r = currentCell.radius;
 
         tree.clear();
